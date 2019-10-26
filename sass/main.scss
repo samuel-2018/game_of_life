@@ -1,0 +1,263 @@
+// ======================================
+// BASE
+// ======================================
+
+$dead-color: rgb(182, 174, 174);
+$forever-dead-color: black;
+$alive-color: #23964a;
+$forever-alive-color: orange;
+$header-color: #e54e00;
+
+body,
+html,
+section {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  // Defines 1 rem.
+  // If browser is set to standard 16px font,
+  // then 1 rem = 10 px.
+  font-size: 62.5%;
+
+  scroll-behavior: smooth;
+}
+
+.App {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.6rem;
+  background-color: black;
+}
+
+// ======================================
+// COMPONENT - HEADER
+// ======================================
+
+.header {
+  width: 100%;
+  font-size: 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: black;
+}
+
+.header__item {
+  margin: 0 1.6rem;
+  background-image: linear-gradient(#fe8d2c, $header-color);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+// ======================================
+// COMPONENT - GAME BOARD
+// ======================================
+
+.game-board {
+  background-color: whitesmoke;
+  // Required for resizing of game board.
+  width: 98%;
+}
+
+.cell__div {
+  // Cell size is controlled with div instead of 'td'.
+
+  max-width: 2.1rem;
+  // Required for resizing of game board.
+  // Padding % is based on current element width.
+  padding-top: 100%;
+}
+.cell-0 {
+  background-color: $dead-color;
+}
+.cell-1 {
+  background-color: $alive-color;
+}
+.cell-2 {
+  background-color: $forever-dead-color;
+}
+.cell-3 {
+  background-color: $forever-alive-color;
+}
+
+// ======================================
+// COMPONENT - CONTROLS
+// ======================================
+
+.instructions__text {
+  display: inline-block;
+  margin: 1.6rem 1.6rem 0 1.6rem;
+  // Has effect of collapsing margin.
+  &:last-child {
+    margin-bottom: 1.6rem;
+  }
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.button-row {
+  max-width: 19rem;
+  @media (min-width: 400px) {
+    max-width: 38rem;
+  }
+  @media (min-width: 800px) {
+    max-width: 76rem;
+  }
+  &:not(:last-child) {
+    margin-bottom: 1.6rem;
+  }
+  &__sub {
+    display: inline-block;
+  }
+  &--selection {
+    border: solid 0.5rem rgba(218, 165, 32, 0.527);
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    border-radius: 1rem;
+  }
+}
+
+.controls,
+.button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  outline-color: $forever-alive-color;
+}
+
+.button {
+  min-height: 4.4rem;
+  min-width: 18rem;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+
+  &--selection {
+    border-radius: 100px;
+
+    // dead cell
+    &--cell-0 {
+      background-image: linear-gradient(lighten($dead-color, 30%), $dead-color);
+      background-color: $dead-color;
+      color: black;
+      &:active {
+        background-image: linear-gradient(
+          to top,
+          lighten($dead-color, 30%),
+          $dead-color
+        );
+      }
+    }
+
+    // alive cell
+    &--cell-1 {
+      background-image: linear-gradient(
+        lighten($alive-color, 30%),
+        $alive-color
+      );
+      background-color: $alive-color;
+      &:active {
+        background-image: linear-gradient(
+          to top,
+          lighten($alive-color, 30%),
+          $alive-color
+        );
+      }
+    }
+
+    // forever alive cell
+    &--cell-2 {
+      background-image: linear-gradient(
+        lighten($forever-dead-color, 30%),
+        $forever-dead-color
+      );
+      background-color: $forever-dead-color;
+      &:active {
+        background-image: linear-gradient(
+          to top,
+          lighten($forever-dead-color, 30%),
+          $forever-dead-color
+        );
+      }
+    }
+
+    //forever alive cell
+    &--cell-3 {
+      background-image: linear-gradient(
+        lighten($forever-alive-color, 30%),
+        $forever-alive-color
+      );
+      background-color: $forever-alive-color;
+      &:active {
+        background-image: linear-gradient(
+          to top,
+          lighten($forever-alive-color, 30%),
+          $forever-alive-color
+        );
+      }
+    }
+
+    &.active-btn {
+      position: relative;
+      // Default blue outline is being replaced.
+      outline: none;
+      // This 'after' content is
+      // nested inside of the element. It is at a
+      // sibling level with the button text.
+      &::after {
+        content: " ";
+        position: absolute;
+        // Most of the below is based off nearest
+        // ancestor with 'position:relative'.
+        top: -0.5rem;
+        left: -0.5rem;
+        width: calc(100% + 1rem);
+        height: calc(100% + 1rem);
+        // The z-index is working within nearest
+        // stacking context, which has been defined
+        // two levels up in ".button-row--selection"
+        // with "position: relative;" and "z-index: 1;".
+        // See: http://www.independent-software.com/set-stacking-order-of-pseudo-elements-below-parent-element.html
+        z-index: -1;
+        background-color: inherit;
+        border-radius: 100px;
+      }
+    }
+  }
+
+  &--control {
+    color: $header-color;
+    font-weight: 900;
+    background-image: linear-gradient(
+      to bottom,
+      lighten(rgb(182, 174, 174), 30%),
+      rgb(182, 174, 174)
+    );
+    border-radius: 0.5rem;
+
+    &:active {
+      background-image: linear-gradient(
+        to top,
+        lighten(rgb(182, 174, 174), 30%),
+        rgb(182, 174, 174)
+      );
+    }
+  }
+}

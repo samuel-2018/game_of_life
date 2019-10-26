@@ -1,0 +1,146 @@
+body,
+html,
+section {
+  width: 100%;
+  padding: 0;
+  margin: 0; }
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
+
+.App {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.6rem;
+  background-color: black; }
+
+.header {
+  width: 100%;
+  font-size: 3.2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: black; }
+
+.header__item {
+  margin: 0 1.6rem;
+  background-image: linear-gradient(#fe8d2c, #e54e00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent; }
+
+.game-board {
+  background-color: whitesmoke;
+  width: 98%; }
+
+.cell__div {
+  max-width: 2.1rem;
+  padding-top: 100%; }
+
+.cell-0 {
+  background-color: #b6aeae; }
+
+.cell-1 {
+  background-color: #23964a; }
+
+.cell-2 {
+  background-color: black; }
+
+.cell-3 {
+  background-color: orange; }
+
+.instructions__text {
+  display: inline-block;
+  margin: 1.6rem 1.6rem 0 1.6rem; }
+  .instructions__text:last-child {
+    margin-bottom: 1.6rem; }
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center; }
+
+.button-row {
+  max-width: 19rem; }
+  @media (min-width: 400px) {
+    .button-row {
+      max-width: 38rem; } }
+  @media (min-width: 800px) {
+    .button-row {
+      max-width: 76rem; } }
+  .button-row:not(:last-child) {
+    margin-bottom: 1.6rem; }
+  .button-row__sub {
+    display: inline-block; }
+  .button-row--selection {
+    border: solid 0.5rem rgba(218, 165, 32, 0.527);
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    border-radius: 1rem; }
+
+.controls,
+.button {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  outline-color: orange; }
+
+.button {
+  min-height: 4.4rem;
+  min-width: 18rem;
+  margin: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem; }
+  .button--selection {
+    border-radius: 100px; }
+    .button--selection--cell-0 {
+      background-image: linear-gradient(#fffefe, #b6aeae);
+      background-color: #b6aeae;
+      color: black; }
+      .button--selection--cell-0:active {
+        background-image: linear-gradient(to top, #fffefe, #b6aeae); }
+    .button--selection--cell-1 {
+      background-image: linear-gradient(#74de98, #23964a);
+      background-color: #23964a; }
+      .button--selection--cell-1:active {
+        background-image: linear-gradient(to top, #74de98, #23964a); }
+    .button--selection--cell-2 {
+      background-image: linear-gradient(#4d4d4d, black);
+      background-color: black; }
+      .button--selection--cell-2:active {
+        background-image: linear-gradient(to top, #4d4d4d, black); }
+    .button--selection--cell-3 {
+      background-image: linear-gradient(#ffdb99, orange);
+      background-color: orange; }
+      .button--selection--cell-3:active {
+        background-image: linear-gradient(to top, #ffdb99, orange); }
+    .button--selection.active-btn {
+      position: relative;
+      outline: none; }
+      .button--selection.active-btn::after {
+        content: " ";
+        position: absolute;
+        top: -0.5rem;
+        left: -0.5rem;
+        width: calc(100% + 1rem);
+        height: calc(100% + 1rem);
+        z-index: -1;
+        background-color: inherit;
+        border-radius: 100px; }
+  .button--control {
+    color: #e54e00;
+    font-weight: 900;
+    background-image: linear-gradient(to bottom, #fffefe, #b6aeae);
+    border-radius: 0.5rem; }
+    .button--control:active {
+      background-image: linear-gradient(to top, #fffefe, #b6aeae); }
