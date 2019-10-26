@@ -28,7 +28,7 @@ class App extends React.Component {
   }
 
   async componentDidMount() {
-    // Note: VSC erroniously says, "'await' has
+    // Note: VSC erroneously says "'await' has
     // no effect on the type of this expression."
     // But it does cause it to wait.
     await this.setGameSize();
@@ -155,7 +155,7 @@ class App extends React.Component {
     // 0 = empty, 1 = alive, 2 = forever dead, 3 = forever alive
 
     // interveral function
-    // runs every second or so.
+    // runs every .3 seconds.
     // reads values in the state matrix
     // then adds values to this.nextGen
     // when complete, it calls setState
